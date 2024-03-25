@@ -15,8 +15,6 @@
     </properties>
 
     <dependencies>
-<<<<<<< HEAD
-=======
 
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -31,8 +29,6 @@
             <version>2.0.9</version>
         </dependency>
 
-
->>>>>>> 1a320ed (Homework №2 commit.)
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
@@ -50,8 +46,6 @@
             <artifactId>junit-platform-console-standalone</artifactId>
             <version>1.10.1</version>
         </dependency>
-<<<<<<< HEAD
-=======
 
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -59,14 +53,12 @@
             <version>4.18.1</version>
         </dependency>
 
-
         <dependency>
             <groupId>com.codeborne</groupId>
             <artifactId>selenide</artifactId>
             <version>7.2.2</version>
         </dependency>
 
->>>>>>> 1a320ed (Homework №2 commit.)
     </dependencies>
 
 </project>
