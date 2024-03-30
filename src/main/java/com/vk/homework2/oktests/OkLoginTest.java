@@ -1,21 +1,14 @@
 package com.vk.homework2.oktests;
 
-import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.vk.homework2.okpages.OkLoginPage;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class OkLoginTest {
+public class OkLoginTest extends BaseTest{
     private OkLoginPage okLoginPage;
-
-    @BeforeAll
-    public static void setupClass(){
-        Configuration.browser ="chrome";
-        Configuration.baseUrl = "https://ok.ru/";
-    }
 
     @BeforeEach
     public void setup(){
@@ -31,5 +24,6 @@ public class OkLoginTest {
     public void testLoginSuccess(){
         //Enter username and password
         okLoginPage.login("user", "password");
+        Assertions.assertTrue(okLoginPage.successfulLogin(),"Login failed: Incorrect username and/or password");
     }
 }
