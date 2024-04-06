@@ -1,7 +1,7 @@
-package com.vk.homework2.oklogics;
+package com.vk.homework3.oklogics;
 
 import com.codeborne.selenide.SelenideElement;
-import com.vk.homework2.okpages.OkMainPage;
+import com.vk.homework3.okpages.OkMainPage;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.hidden;
@@ -17,22 +17,22 @@ public class OkAddFriend extends OkMainPage {
     private static final By navigatorSideFriendButton = By.xpath(".//a[contains(@class, 'nav-side_i  __with-ic __with-new-icons') and @data-l='t,userFriend']");
     private static final By moreButton = By.xpath(".//button[@id='mctc_navMenuDDC_userFriendMenuMore']");
     private static final By outgoingRequestsButton = By.xpath(".//a[contains(@class,'mctc_navMenuDDLIL') and @data-l='t,userOutgoingFriendRequest']");
-    private static final By declineFriendRequestButton = By.xpath(".//button[@class='js-entity-decline button-pro __sec __small']");
+    private static final By declineFriendRequestButton = By.xpath(".//button[contains(@class, 'js-entity-decline button-pro __sec __small') or contains(text(), 'Отменить заявку')]");
 
 
-    public OkAddFriend(){
+    public OkAddFriend() {
         super();
         checkPage();
     }
 
-    public void addFriend(String friendName){
-       $(searchSiteInput).shouldBe(visible).sendKeys(friendName);
-       $(searchSiteInput).pressEnter();
-       $(tabUsersButton).shouldBe(visible).click();
-       $(addFriendButton).shouldBe(visible).click();
+    public void addFriend(String friendName) {
+        $(searchSiteInput).shouldBe(visible).sendKeys(friendName);
+        $(searchSiteInput).pressEnter();
+        $(tabUsersButton).shouldBe(visible).click();
+        $(addFriendButton).shouldBe(visible).click();
     }
 
-    public void deleteFriend(){
+    public void deleteFriend() {
         $(navigatorSideFriendButton).shouldBe(visible).click();
         SelenideElement element = $(moreButton);
         executeJavaScript("arguments[0].setAttribute('aria-expanded','true');", element);
@@ -40,10 +40,10 @@ public class OkAddFriend extends OkMainPage {
         SelenideElement element2 = $(outgoingRequestsButton);
         executeJavaScript("arguments[0].click();", element2);
         element2.shouldBe(hidden);
-        $(declineFriendRequestButton).shouldBe(visible).click();
+        $(declineFriendRequestButton).shouldBe(visible).doubleClick();
     }
 
-    public boolean checkAddFriend(){
+    public boolean checkAddFriend() {
         return $(navigatorSideUserPageButton).shouldBe(visible).isDisplayed();
     }
 }

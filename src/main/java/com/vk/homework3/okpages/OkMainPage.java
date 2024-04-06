@@ -1,4 +1,4 @@
-package com.vk.homework2.okpages;
+package com.vk.homework3.okpages;
 
 import org.openqa.selenium.By;
 
