@@ -1,41 +1,47 @@
 package com.vk.homework3.okpages;
 
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
 
 public class OkLoginPage {
 
-    private static final By usernameInput = By.xpath(".//input[@id='field_email']");
-    private static final By passwordInput = By.xpath(".//input[@id='field_password']");
-    private static final By submitButton = By.xpath(".//input[@class='button-pro __wide']");
-    private static final By navigatorSideUserPageButton = By.xpath(".//a[contains(@class, 'nav-side_i  __with-ic __with-new-icons') and @data-l='t,userPage']");
-    private static final By navigatorSideGroupPageButton = By.xpath(".//a[contains(@class, 'nav-side_i  __with-ic __with-new-icons') and @data-l='t,userAltGroup']");
+    private static final By USERNAME_INPUT = By.xpath(".//input[@id='field_email']");
+    private static final By PASSWORD_INPUT = By.xpath(".//input[@id='field_password']");
+    private static final By SUBMIT_BUTTON = By.xpath(".//input[@class='button-pro __wide']");
 
     public OkLoginPage() {
-        open("/");
         checkPage();
     }
 
-    public void login(String username, String password) {
-        $(usernameInput).shouldBe(visible).sendKeys(username);
-        $(passwordInput).shouldBe(visible).sendKeys(password);
-        $(submitButton).shouldBe(visible).click();
+    public void loginUsername(String username) {
+        $(USERNAME_INPUT).shouldBe(visible
+                .because("We need to input the username")).sendKeys(username);
     }
 
-    public boolean successfulLogin1() {
-        return $(navigatorSideUserPageButton).shouldBe(visible).isDisplayed();
+    public void loginPassword(String password){
+        $(PASSWORD_INPUT).shouldBe(visible
+                .because("We need to input the password")).sendKeys(password);
     }
 
-    public boolean successfulLogin2(){
-        return $(navigatorSideGroupPageButton).shouldBe(visible).isDisplayed();
+    public void submit(){
+        $(SUBMIT_BUTTON).shouldBe(visible
+                .because("We need to click the submit button")).click();
+    }
+
+    public SelenideElement getNavigatorSideGroupPage() {
+        return $(OkMainPage.NAVIGATOR_SIDE_GROUP_PAGE_HYPERLINK).shouldBe(visible);
+    }
+
+    public SelenideElement getNavigatorSideUserPage(){
+        return $(OkMainPage.NAVIGATOR_SIDE_USER_PAGE_HYPERLINK).shouldBe(visible);
     }
 
     private void checkPage() {
-        $(usernameInput).shouldBe(visible);
-        $(passwordInput).shouldBe(visible);
-        $(submitButton).shouldBe(visible);
+        $(USERNAME_INPUT).shouldBe(visible);
+        $(PASSWORD_INPUT).shouldBe(visible);
+        $(SUBMIT_BUTTON).shouldBe(visible);
     }
 }

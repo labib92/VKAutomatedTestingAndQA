@@ -1,8 +1,6 @@
 package com.vk.homework3.oktests;
 
-import com.codeborne.selenide.Selenide;
 import com.vk.homework3.okpages.OkLoginPage;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -15,35 +13,35 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.concurrent.TimeUnit;
 
+import static com.codeborne.selenide.Selenide.open;
+
 
 @DisplayName("Ok.ru Login Test Class")
 public class OkLoginTest extends BaseTest {
-    private OkLoginPage okLoginPage;
 
     @BeforeEach
-    public void setup() {
-        log.info("Setup login test");
+    @Override
+    public void setup(){
+        log.info("Setup Test");
+        open("/");
         okLoginPage = new OkLoginPage();
-    }
-
-    @AfterEach
-    public void tearDown() {
-        log.info("Closing the browser");
-        Selenide.closeWindow();
     }
 
     @DisabledOnJre(JRE.JAVA_11)
     @ParameterizedTest
-    @CsvSource({"user1, password1", "user2, password2"})
+    @CsvSource({"technopol71, technopolisPassword", "technopol71, technopolisPassword"})
     @DisplayName("Test Login Success")
     @Tag("LoginSuccess")
-    @Timeout(value = 10000, unit = TimeUnit.MILLISECONDS)
+    @Timeout(value = 20000, unit = TimeUnit.MILLISECONDS)
     public void testLoginSuccess(String username, String password) {
         log.info("Testing logging success");
-        //Enter username and password
-        okLoginPage.login(username, password);
-        Assertions.assertAll("LoginSuccess",
-                () -> Assertions.assertTrue(okLoginPage.successfulLogin1(), "Login failed: Incorrect username and/or password"),
-                () -> Assertions.assertTrue(okLoginPage.successfulLogin2(), "Login failed: Incorrect username and/or password"));
+        okLoginPage.loginUsername(username);
+        okLoginPage.loginPassword(password);
+        okLoginPage.submit();
+       Assertions.assertAll("Login Success",
+                () -> Assertions.assertTrue(okLoginPage.getNavigatorSideUserPage().isDisplayed(),
+                        "Navigator side user page button should be visible after login"),
+                () -> Assertions.assertTrue(okLoginPage.getNavigatorSideGroupPage().isDisplayed(),
+                        "Navigator side group page button should be visible after login"));
     }
 }
