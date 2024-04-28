@@ -16,7 +16,6 @@ public class BaseTest {
     static final Logger log = getLogger(lookup().lookupClass());
     protected OkLoginPage okLoginPage;
 
-
     @BeforeAll
     public static void setupClass() {
         log.info("Setup for all tests");
@@ -24,11 +23,10 @@ public class BaseTest {
         Configuration.baseUrl = "https://ok.ru/";
         Configuration.pageLoadTimeout = 60000;
         Configuration.timeout = 10000;
-
     }
 
     @BeforeEach
-    public void setup(){
+    public void setup() {
         log.info("Setup Test");
         open("/");
         okLoginPage = new OkLoginPage();
@@ -42,5 +40,4 @@ public class BaseTest {
         log.info("Closing the browser");
         Selenide.closeWindow();
     }
-
 }

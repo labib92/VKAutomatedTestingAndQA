@@ -1,6 +1,6 @@
 package com.vk.homework3.oktests;
 
-import com.vk.homework3.oklogics.OkLogout;
+import com.vk.homework3.okpages.OkLogout;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;

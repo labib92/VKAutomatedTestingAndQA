@@ -1,8 +1,8 @@
 package com.vk.homework3.oktests;
 
 import com.codeborne.selenide.Selenide;
-import com.vk.homework3.oklogics.OkChangePageTheme;
-import com.vk.homework3.oklogics.OkLogout;
+import com.vk.homework3.okpages.OkChangePageTheme;
+import com.vk.homework3.okpages.OkLogout;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -21,7 +21,7 @@ public class OkChangePageThemeTest extends BaseTest {
     @AfterEach
     @Override
     public void tearDown() {
-        log.info("Logout from test change theme to dark");
+        log.info("Logout from test change after changing the theme");
         OkLogout okLogout = new OkLogout();
         okLogout.logoutSuccess();
     }
@@ -36,15 +36,13 @@ public class OkChangePageThemeTest extends BaseTest {
     @Tag("DarkTheme")
     @Timeout(value = 20000, unit = TimeUnit.MILLISECONDS)
     public void testChangeThemeToDark() {
-        log.info("Test Change Theme to Dark");
         okChangePageTheme = new OkChangePageTheme();
         okChangePageTheme.navigateToSettingsMenu();
         okChangePageTheme.changeToDarkTheme();
-
-       /* Assertions.assertAll("Setting Elements",
-                () -> Assertions.assertTrue(okChangePageTheme.checkSettingFriendButton(), "Button friend doesn't exist"),
-                () -> Assertions.assertTrue(okChangePageTheme.checkSettingPhotoButton(), "Button photo doesn't exist"));*/
-        Assertions.assertEquals(okChangePageTheme.getThemeColorText(),"Тёмная");
+        okChangePageTheme.clickToolBarLogo();
+        okChangePageTheme.navigateToSettingsMenu();
+        Assertions.assertEquals(okChangePageTheme.getThemeColorText(), "Тёмная",
+                "The theme text should be Тёмная after changing the theme to dark theme");
     }
 
     @DisplayName("Ok change page to another theme nested class")
@@ -56,13 +54,13 @@ public class OkChangePageThemeTest extends BaseTest {
         @Tag("LightTheme")
         @Timeout(value = 20000, unit = TimeUnit.MILLISECONDS)
         public void testChangeThemeToLight() {
-            log.info("Test Change Theme to Light");
             okChangePageTheme = new OkChangePageTheme();
             okChangePageTheme.navigateToSettingsMenu();
             okChangePageTheme.changeToLightTheme();
-            /*Assertions.assertAll("Setting Elements",
-                    () -> Assertions.assertTrue(okChangePageTheme.checkSettingFriendButton(), "Button friend doesn't exist"),
-                    () -> Assertions.assertTrue(okChangePageTheme.checkSettingPhotoButton(), "Button photo doesn't exist"));*/
+            okChangePageTheme.clickToolBarLogo();
+            okChangePageTheme.navigateToSettingsMenu();
+            Assertions.assertEquals(okChangePageTheme.getThemeColorText(), "Светлая",
+                    "The theme text should be Светлая after changing the theme to light theme");
         }
 
         @DisplayName("Ok change page to system theme nested class")
@@ -73,13 +71,13 @@ public class OkChangePageThemeTest extends BaseTest {
             @Tag("SystemTheme")
             @Timeout(value = 20000, unit = TimeUnit.MILLISECONDS)
             public void testChangeThemeToSystem() {
-                log.info("Test Change Theme to System");
                 okChangePageTheme = new OkChangePageTheme();
                 okChangePageTheme.navigateToSettingsMenu();
                 okChangePageTheme.changeToAutoTheme();
-                /*Assertions.assertAll("Setting Elements",
-                        () -> Assertions.assertTrue(okChangePageTheme.checkSettingFriendButton(), "Button friend doesn't exist"),
-                        () -> Assertions.assertTrue(okChangePageTheme.checkSettingPhotoButton(), "Button photo doesn't exist"));*/
+                okChangePageTheme.clickToolBarLogo();
+                okChangePageTheme.navigateToSettingsMenu();
+                Assertions.assertEquals(okChangePageTheme.getThemeColorText(), "Как в системе",
+                        "The theme text should be Как в системе after changing the theme to system theme");
             }
         }
     }

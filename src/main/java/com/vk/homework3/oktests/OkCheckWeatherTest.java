@@ -1,6 +1,6 @@
 package com.vk.homework3.oktests;
 
-import com.vk.homework3.oklogics.OkCheckWeather;
+import com.vk.homework3.okpages.OkCheckWeather;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;

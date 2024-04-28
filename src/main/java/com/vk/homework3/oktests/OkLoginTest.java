@@ -21,7 +21,7 @@ public class OkLoginTest extends BaseTest {
 
     @BeforeEach
     @Override
-    public void setup(){
+    public void setup() {
         log.info("Setup Test");
         open("/");
         okLoginPage = new OkLoginPage();
@@ -38,7 +38,7 @@ public class OkLoginTest extends BaseTest {
         okLoginPage.loginUsername(username);
         okLoginPage.loginPassword(password);
         okLoginPage.submit();
-       Assertions.assertAll("Login Success",
+        Assertions.assertAll("Login Success",
                 () -> Assertions.assertTrue(okLoginPage.getNavigatorSideUserPage().isDisplayed(),
                         "Navigator side user page button should be visible after login"),
                 () -> Assertions.assertTrue(okLoginPage.getNavigatorSideGroupPage().isDisplayed(),

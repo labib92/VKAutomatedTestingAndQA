@@ -1,7 +1,6 @@
-package com.vk.homework3.oklogics;
+package com.vk.homework3.okpages;
 
 import com.codeborne.selenide.SelenideElement;
-import com.vk.homework3.okpages.OkMainPage;
 import org.openqa.selenium.By;
 
 import java.awt.*;
@@ -15,7 +14,7 @@ import static com.codeborne.selenide.Selenide.executeJavaScript;
 import static com.codeborne.selenide.Selenide.sleep;
 
 
-public class OkCreatePost extends OkMainPage {
+public class OkCreatePost extends OkBasePage {
     private static final By POST_DROPDOWN_BUTTON = By.xpath(".//button[@class = 'dropdown-button__qx55h']");
     private static final By RECORD_HYPERLINK = By.xpath(".//a[@class = 'link__91azp item-link__7e56q __primary__91azp']");
     private static final By SHARE_BUTTON = By.xpath(".//button[@class = 'posting_submit button-pro']");
@@ -28,31 +27,32 @@ public class OkCreatePost extends OkMainPage {
         super();
     }
 
-    public void createPost(String enterText)  {
-        sleep(3000);
+    public void createPost(String enterText) {
+        sleep(1000);
         $(POST_DROPDOWN_BUTTON).shouldBe(visible
-                .because("The post dropdown button should be visible before clicking"),
-                Duration.ofSeconds(10)).click();
+                        .because("The post dropdown button should be visible before clicking"),
+                Duration.ofSeconds(6)).click();
         $(RECORD_HYPERLINK).shouldBe(visible
-                .because("The record hyperlink button should be visible before clicking"),
-                Duration.ofSeconds(10)).click();
-        sleep(3000);
+                        .because("The record hyperlink button should be visible before clicking"),
+                Duration.ofSeconds(6)).click();
+        sleep(1000);
         try {
             typeString(enterText);
-        }catch (AWTException e){
+        } catch (AWTException e) {
             System.err.println(e.getMessage());
         }
         $(SHARE_BUTTON).shouldBe(visible
-                .because("We can't click on the button to create post if it's not visible")).click();
-        sleep(3000);
+                        .because("We can't click on the button to create post if it's not visible"),
+                Duration.ofSeconds(6)).click();
         $(NAVIGATOR_SIDE_USER_PAGE_HYPERLINK).shouldBe(visible
-                .because("The button should be visible before clicking")).click();
+                        .because("The button should be visible before clicking"),
+                Duration.ofSeconds(6)).click();
         $(POSTS_HYPERLINK).shouldBe(visible
-                .because("The button should be visible before clicking")).click();
-        sleep(3000);
+                        .because("The button should be visible before clicking"),
+                Duration.ofSeconds(6)).click();
     }
 
-   public void deletePost() {
+    public void deletePost() {
         SelenideElement element = $(NEW_TOPIC_ICON_DOWN_SPAN).shouldBe(visible
                 .because("New topic icon down should be visible"));
         executeJavaScript("arguments[0].setAttribute('aria-expanded','true');", element);
@@ -61,9 +61,9 @@ public class OkCreatePost extends OkMainPage {
         executeJavaScript("arguments[0].click();", element2);
     }
 
-
     public SelenideElement successfulCreatePost() {
-        return $(POST_TEXT_DIV).shouldBe(visible);
+        return $(POST_TEXT_DIV).shouldBe(visible
+                .because("After creating the post the post should be visible"));
     }
 
     private static void typeString(String string) throws AWTException {
@@ -78,7 +78,7 @@ public class OkCreatePost extends OkMainPage {
             robot.keyPress(Character.toUpperCase(c));
             robot.keyRelease(Character.toUpperCase(c));
 
-            if (Character.isUpperCase(c)){
+            if (Character.isUpperCase(c)) {
                 robot.keyRelease(KeyEvent.VK_SHIFT);
             }
         }

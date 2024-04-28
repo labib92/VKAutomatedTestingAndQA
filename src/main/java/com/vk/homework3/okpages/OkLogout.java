@@ -1,14 +1,12 @@
-package com.vk.homework3.oklogics;
+package com.vk.homework3.okpages;
 
 import com.codeborne.selenide.SelenideElement;
-import com.vk.homework3.okpages.OkMainPage;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-public class OkLogout extends OkMainPage {
-
+public class OkLogout extends OkBasePage {
     private static final By LOGOUT_LINK = By.xpath(".//a[@class='lp']");
     private static final By LOGOUT_DIALOG_INPUT = By.xpath(".//input[@id='hook_FormButton_logoff.confirm_not_decorate']");
     private static final By SUBMIT_BUTTON = By.xpath(".//input[@class='button-pro __wide']");
@@ -29,15 +27,17 @@ public class OkLogout extends OkMainPage {
     }
 
     public SelenideElement getSubmitButton() {
-        return $(SUBMIT_BUTTON).shouldBe(visible);
+        return $(SUBMIT_BUTTON).shouldBe(visible
+                .because("The submit button should be visible"));
     }
 
-    public SelenideElement getUsernameField(){
-        return $(USERNAME_INPUT).shouldBe(visible);
+    public SelenideElement getUsernameField() {
+        return $(USERNAME_INPUT).shouldBe(visible
+                .because("The username input field should be visible"));
     }
 
-    public SelenideElement getPasswordField(){
-        return $(PASSWORD_INPUT).shouldBe(visible);
+    public SelenideElement getPasswordField() {
+        return $(PASSWORD_INPUT).shouldBe(visible
+                .because("The password input field should be visible"));
     }
-
 }

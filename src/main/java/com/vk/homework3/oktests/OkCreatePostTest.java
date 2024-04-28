@@ -1,7 +1,7 @@
 package com.vk.homework3.oktests;
 
 import com.codeborne.selenide.Selenide;
-import com.vk.homework3.oklogics.OkCreatePost;
+import com.vk.homework3.okpages.OkCreatePost;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -15,7 +15,6 @@ import java.util.concurrent.TimeUnit;
 public class OkCreatePostTest extends BaseTest {
     private OkCreatePost okCreatePost;
     private final String expectedPostText = "Hello, World";
-    
 
     @AfterEach
     @Override
@@ -33,6 +32,7 @@ public class OkCreatePostTest extends BaseTest {
         log.info("Testing create post");
         okCreatePost = new OkCreatePost();
         okCreatePost.createPost(expectedPostText);
-        Assertions.assertEquals(okCreatePost.successfulCreatePost().getText(),expectedPostText);
+        Assertions.assertEquals(okCreatePost.successfulCreatePost().getText(), expectedPostText,
+                "Post text should exist after creating a post");
     }
 }
