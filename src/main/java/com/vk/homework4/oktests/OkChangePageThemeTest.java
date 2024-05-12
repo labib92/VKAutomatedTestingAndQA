@@ -1,8 +1,7 @@
-package com.vk.homework3.oktests;
+package com.vk.homework4.oktests;
 
-import com.codeborne.selenide.Selenide;
-import com.vk.homework3.okpages.OkChangePageTheme;
-import com.vk.homework3.okpages.OkLogout;
+import com.vk.homework4.okpages.OkChangePageTheme;
+import com.vk.homework4.okpages.OkLogout;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -14,7 +13,7 @@ import org.junit.jupiter.api.Timeout;
 
 import java.util.concurrent.TimeUnit;
 
-@DisplayName("Ok change page theme class")
+@DisplayName("Ok.ru change page theme class")
 public class OkChangePageThemeTest extends BaseTest {
     private OkChangePageTheme okChangePageTheme;
 
@@ -28,7 +27,8 @@ public class OkChangePageThemeTest extends BaseTest {
 
     @AfterAll
     public static void close() {
-        Selenide.closeWindow();
+        log.info("Close Browser");
+        browserManager.closeBrowser();
     }
 
     @Test
@@ -37,15 +37,13 @@ public class OkChangePageThemeTest extends BaseTest {
     @Timeout(value = 20000, unit = TimeUnit.MILLISECONDS)
     public void testChangeThemeToDark() {
         okChangePageTheme = new OkChangePageTheme();
-        okChangePageTheme.navigateToSettingsMenu();
-        okChangePageTheme.changeToDarkTheme();
-        okChangePageTheme.clickToolBarLogo();
-        okChangePageTheme.navigateToSettingsMenu();
+        okChangePageTheme.navigateToSettingsMenu().changeToDarkTheme().clickToolBarLogo()
+                .navigateToSettingsMenu();
         Assertions.assertEquals(okChangePageTheme.getThemeColorText(), "Тёмная",
                 "The theme text should be Тёмная after changing the theme to dark theme");
     }
 
-    @DisplayName("Ok change page to another theme nested class")
+    @DisplayName("Ok.ru change page to another theme nested class")
     @Nested
     class OkChangePageToAnotherTheme {
 
@@ -55,15 +53,13 @@ public class OkChangePageThemeTest extends BaseTest {
         @Timeout(value = 20000, unit = TimeUnit.MILLISECONDS)
         public void testChangeThemeToLight() {
             okChangePageTheme = new OkChangePageTheme();
-            okChangePageTheme.navigateToSettingsMenu();
-            okChangePageTheme.changeToLightTheme();
-            okChangePageTheme.clickToolBarLogo();
-            okChangePageTheme.navigateToSettingsMenu();
+            okChangePageTheme.navigateToSettingsMenu().changeToLightTheme().clickToolBarLogo()
+                    .navigateToSettingsMenu();
             Assertions.assertEquals(okChangePageTheme.getThemeColorText(), "Светлая",
                     "The theme text should be Светлая after changing the theme to light theme");
         }
 
-        @DisplayName("Ok change page to system theme nested class")
+        @DisplayName("Ok.ru change page to system theme nested class")
         @Nested
         class OkChangeThemeToSystemTheme {
             @Test
@@ -72,10 +68,8 @@ public class OkChangePageThemeTest extends BaseTest {
             @Timeout(value = 20000, unit = TimeUnit.MILLISECONDS)
             public void testChangeThemeToSystem() {
                 okChangePageTheme = new OkChangePageTheme();
-                okChangePageTheme.navigateToSettingsMenu();
-                okChangePageTheme.changeToAutoTheme();
-                okChangePageTheme.clickToolBarLogo();
-                okChangePageTheme.navigateToSettingsMenu();
+                okChangePageTheme.navigateToSettingsMenu().changeToAutoTheme().clickToolBarLogo()
+                        .navigateToSettingsMenu();
                 Assertions.assertEquals(okChangePageTheme.getThemeColorText(), "Как в системе",
                         "The theme text should be Как в системе after changing the theme to system theme");
             }

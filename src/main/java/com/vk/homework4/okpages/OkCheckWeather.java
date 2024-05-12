@@ -1,4 +1,4 @@
-package com.vk.homework3.okpages;
+package com.vk.homework4.okpages;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;

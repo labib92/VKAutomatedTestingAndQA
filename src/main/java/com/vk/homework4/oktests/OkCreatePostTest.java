@@ -1,7 +1,6 @@
-package com.vk.homework3.oktests;
+package com.vk.homework4.oktests;
 
-import com.codeborne.selenide.Selenide;
-import com.vk.homework3.okpages.OkCreatePost;
+import com.vk.homework4.okpages.OkCreatePost;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -21,7 +20,7 @@ public class OkCreatePostTest extends BaseTest {
     public void tearDown() {
         log.info("Deleting the post and closing the browser");
         okCreatePost.deletePost();
-        Selenide.closeWindow();
+        browserManager.closeBrowser();
     }
 
     @Test

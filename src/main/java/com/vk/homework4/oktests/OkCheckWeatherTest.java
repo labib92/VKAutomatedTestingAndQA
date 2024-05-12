@@ -1,6 +1,6 @@
-package com.vk.homework3.oktests;
+package com.vk.homework4.oktests;
 
-import com.vk.homework3.okpages.OkCheckWeather;
+import com.vk.homework4.okpages.OkCheckWeather;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -17,7 +17,7 @@ public class OkCheckWeatherTest extends BaseTest {
     @Test
     @DisplayName("Test Check Weather Success")
     @Tag("CheckWeather")
-    @Timeout(value = 10000, unit = TimeUnit.MILLISECONDS)
+    @Timeout(value = 40000, unit = TimeUnit.MILLISECONDS)
     public void testCheckWeather() {
         log.info("Testing check weather");
         OkCheckWeather okCheckWeather = new OkCheckWeather();

@@ -1,4 +1,4 @@
-package com.vk.homework3.okpages;
+package com.vk.homework4.okpages;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
@@ -12,7 +12,6 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 import static com.codeborne.selenide.Selenide.sleep;
-
 
 public class OkCreatePost extends OkBasePage {
     private static final By POST_DROPDOWN_BUTTON = By.xpath(".//button[@class = 'dropdown-button__qx55h']");

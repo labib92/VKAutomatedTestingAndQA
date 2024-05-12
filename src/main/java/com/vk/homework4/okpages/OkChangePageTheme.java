@@ -1,4 +1,4 @@
-package com.vk.homework3.okpages;
+package com.vk.homework4.okpages;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
@@ -23,7 +23,7 @@ public class OkChangePageTheme extends OkBasePage {
         super();
     }
 
-    public void navigateToSettingsMenu() {
+    public OkChangePageTheme navigateToSettingsMenu() {
         $(NAVIGATOR_SIDE_USER_PAGE_HYPERLINK).shouldBe(visible
                         .because("Navigator side user page should be visible before clicking it"),
                 Duration.ofSeconds(6)).click();
@@ -31,29 +31,34 @@ public class OkChangePageTheme extends OkBasePage {
         $(SETTING_BUTTON).shouldBe(visible
                         .because("Setting button should be visible before clicking it"),
                 Duration.ofSeconds(6)).click();
+        return new OkChangePageTheme();
     }
 
-    public void changeToAutoTheme() {
+    public OkChangePageTheme changeToAutoTheme() {
         SelenideElement auto = $(AUTO_THEME).shouldBe(hidden
                 .because("Auto theme is a hidden list in the setting user theme"));
         executeJavaScript("arguments[0].click();", auto);
+        return new OkChangePageTheme();
     }
 
-    public void changeToLightTheme() {
+    public OkChangePageTheme changeToLightTheme() {
         SelenideElement light = $(LIGHT_THEME).shouldBe(hidden
                 .because("Light theme is a hidden list in the setting user theme"));
         executeJavaScript("arguments[0].click();", light);
+        return new OkChangePageTheme();
     }
 
-    public void changeToDarkTheme() {
+    public OkChangePageTheme changeToDarkTheme() {
         SelenideElement dark = $(DARK_THEME).shouldBe(hidden
                 .because("Dark theme is a hidden list in the setting user theme"));
         executeJavaScript("arguments[0].click();", dark);
+        return new OkChangePageTheme();
     }
 
-    public void clickToolBarLogo() {
+    public OkChangePageTheme clickToolBarLogo() {
         $(TOOLBAR_LOGO_HYPERlINK).shouldBe(
                 visible.because("Toolbar logo should be visible before clicking it")).click();
+        return new OkChangePageTheme();
     }
 
     public String getThemeColorText() {
