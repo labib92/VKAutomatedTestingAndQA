@@ -38,6 +38,7 @@ public class OkGroupByInterestDecorator extends OkDecoratorGroup {
 
     @Override
     public SelenideElement getGroupNameHeader() {
-        return $(createGroup.getGroupNameHeader()).shouldBe(visible);
+        return $(createGroup.getGroupNameHeader()).shouldBe(visible
+                .because("Group name header should be visible"));
     }
 }

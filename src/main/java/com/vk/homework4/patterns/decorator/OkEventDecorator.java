@@ -46,6 +46,7 @@ public class OkEventDecorator extends OkDecoratorGroup {
 
     @Override
     public SelenideElement getGroupNameHeader() {
-        return $(createEvent.getGroupNameHeader()).shouldBe(visible);
+        return $(createEvent.getGroupNameHeader()).shouldBe(visible
+                .because("Group name header should be visible"));
     }
 }
